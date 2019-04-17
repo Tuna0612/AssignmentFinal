@@ -1,0 +1,129 @@
+<h1>Add Room</h1>
+<form action="/room/save-add" method="POST" enctype="multipart/form-data" id="add-room">
+    <div class="form-group">
+        <label for="name">Room Number</label>
+        <input type="text" name="room_number" class="form-control" id="room_number">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Hotel</label>
+        <select name="room_hotels" class="form-control">
+            {{#each hotel}}
+            <option value="{{this._id}}">{{this.hotel_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="">Ảnh </label>
+        <input type="file" name="room_image" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Floor</label>
+        <input type="number" name="room_floor" class="form-control" id="room_floor">
+    </div>
+
+    {{!-- chưa set name --}}
+    <div class="form-group">
+        <label for="name">Kind Room</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="room_single" id="room_single" value="Single Room"
+                checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Single Room
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="room_single" id="room_single" value="Double Room">
+            <label class="form-check-label" for="exampleRadios2">
+                Double Room
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Price</label>
+        <input type="number" name="room_price" class="form-control" id="room_price">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Status</label>
+        {{!-- {{{check_room_status }}} --}}
+        <select class="custom-select" name="room_status">
+            <option value="" selected >Chọn trạng thái</option>
+            <option value="Đang trống" >Đang trống</option>
+            <option value="Đã đặt">Đã đặt</option>
+            <option value="Không sử dụng">Không sử dụng</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Detail</label>
+        <input type="text" name="room_detail" class="form-control" id="room_detail">
+    </div>
+
+    <button type="submit" class="btn btn-outline-success">Save</button>
+    <a href="/" class="btn btn-outline-danger">Cancel</a>
+</form>
+<script>
+    $(document).ready(function () {
+        $("#add-room").validate({
+            rules: {
+                room_number: {
+                    required: true,
+                },
+                room_hotels:{
+                    required: true,
+                },
+                room_image:{
+                    required: true,
+                },
+                room_floor:{
+                    required: true,
+                    number: true,
+                    min: 1,
+                },
+                room_single:{
+                    required: true,
+                },
+                room_price:{
+                    required: true,
+                    min: 1,
+                },
+                room_status:{
+                    required: true,
+                },
+                room_detail:{
+                    required: true,
+                },
+            },
+            messages: {
+                room_number: {
+                    required: "* Mục này không được để trống!",
+                },
+                room_hotels:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_image:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_floor:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_single:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_price:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_status:{
+                    required: "* Mục này không được để trống!",
+                },
+                room_detail:{
+                    required: "* Mục này không được để trống!",
+                },
+            }
+        });
+    });
+</script>

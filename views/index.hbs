@@ -1,0 +1,39 @@
+<table class="table table-cate">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Rooms Number</th>
+            <th scope="col">Hotel</th>
+            <th scope="col">Image</th>
+            <th scope="col">Floor</th>
+            <th scope="col">Kind</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Detail</th>
+            <th scope="col"><a href="/room/add" class="btn btn-outline-info">Add</a></th>
+        </tr>
+    </thead>
+    <tbody class="hotel">
+        {{#each room}}
+        <tr>
+            <td>{{this.room_number}}</td>
+            <td>{{this.room_hotels.hotel_name}}</td>
+            <td><img src="{{this.room_image}}" width="200" class="img-thumbnail"></td>
+            <td>{{this.room_floor}}</td>
+            <td>{{this.room_single}}</td>
+            <td>{{this.room_price}}</td>
+            <td>{{this.room_status}}</td>
+            <td>{{this.room_detail}}</td>
+            <th>
+                <a href="/room/edit/{{this._id}}" class="btn btn-success">Edit</a>
+                <a href="/room/remove/{{this._id}}" onclick="return cf_delete()" class="btn btn-danger">Delete</a>
+            </th>
+            <script>
+                function cf_delete() {
+                    return confirm("Bạn có chắc chắn muốn xóa ?");
+                }
+
+            </script>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
